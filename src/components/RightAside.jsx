@@ -1,15 +1,32 @@
 
 // You may need to move these when creating new components
+import { useState } from 'react'
 import imgElon from '../assets/images/elon.jpg'
 import imgZuck from '../assets/images/zuck.jpg'
+import FollowBlock from './FollowBlock'
 
-export default function RightAside() {
+export default function RightAside({ searchValue, onSearch}) {
+
+    const handleOnChange = (e) => {
+        e.preventDefault()
+        const value = e.target.value
+        console.log(value)
+        onSearch(value)
+        
+    }
 
     return (
         <aside className='right-side'>
+
             <div className='search-section'>
                 <i className="fa-solid fa-magnifying-glass search-icon"></i>
-                <input className="search" type="text" placeholder="Search Twitter" />
+                <input 
+                    className="search" 
+                    type="text" 
+                    placeholder="Search Twitter"
+                    value={searchValue}
+                    onChange={handleOnChange}
+                />
             </div>
 
             <div className='widget'>
@@ -47,35 +64,24 @@ export default function RightAside() {
                         <i className="fa-solid fa-ellipsis"></i>
                     </div>
                 </div>
+
             </div>
+
             <div className='widget'>
                 <h1>Who to follow</h1>
 
-                <div className="follow-block">
-                    <div className="icon"><img src={imgElon} /></div>
+                <FollowBlock 
+                    nameHeader={"Elon Musk"} 
+                    tagHeader={"@elonmusk"} 
+                    img={imgElon}
+                />
 
-                    <div className="content">
-                        <h4>Elon Musk</h4>
-                        <h5>@elonmusk</h5>
-                    </div>
+                <FollowBlock 
+                    nameHeader={"Mark Zuckerberg"} 
+                    tagHeader={"@markzuckerberg"} 
+                    img={imgZuck}
+                />
 
-                    <div className="action">
-                        <button className="follow-btn">Follow</button>
-                    </div>
-                </div>
-
-                <div className="follow-block">
-                    <div className="icon"><img src={imgZuck} /></div>
-
-                    <div className="content">
-                        <h4>Mark Zuckerberg</h4>
-                        <h5>@markzuckerberg</h5>
-                    </div>
-
-                    <div className="action">
-                        <button className="follow-btn">Follow</button>
-                    </div>
-                </div>
             </div>
         </aside>
     )

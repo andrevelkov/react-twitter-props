@@ -9,14 +9,14 @@ import user from './assets/data/user.js'
 
 function App() {
     const [loggedInUser] = useState(user)
-
+    const [searchInput, setSearchInput] = useState('')
 
     return (
         <div className="container">
 
             <LeftAside loggedInUser={loggedInUser} />
-            <Main loggedInUser={loggedInUser} />
-            <RightAside />
+            <Main loggedInUser={loggedInUser} searchInput={searchInput} />
+            <RightAside searchValue={searchInput} onSearch={setSearchInput}/>
 
         </div>
     )
